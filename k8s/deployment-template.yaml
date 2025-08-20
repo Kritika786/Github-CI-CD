@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${DEPLOYMENT_NAME}-${INACTIVE_COLOR}
+  labels:
+    app: ${DEPLOYMENT_NAME}
+    color: ${INACTIVE_COLOR}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ${DEPLOYMENT_NAME}
+      color: ${INACTIVE_COLOR}
+  template:
+    metadata:
+      labels:
+        app: ${DEPLOYMENT_NAME}
+        color: ${INACTIVE_COLOR}
+    spec:
+      containers:
+        - name: ${DEPLOYMENT_NAME}
+          image: ${IMAGE}
+          ports:
+            - containerPort: 8080
